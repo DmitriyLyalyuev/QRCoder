@@ -216,11 +216,12 @@ def make_qr_from_message(input_values):
         args['mode'] = mode
     if error_type != 'Automatic':
         args['error'] = error_type
+    args['encoding'] = 'utf-8'
 
     success = apper.check_dependency('pyqrcode', config.lib_path)
 
     if success:
-        qr_data = build_qr_code(message, args)
+        qr_data = build_qr_code(message.encode('utf-8'), args)
         return qr_data
 
 
